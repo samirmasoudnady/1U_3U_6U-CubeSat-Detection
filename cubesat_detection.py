@@ -226,10 +226,16 @@ with tab_1:
     # show result loss function and map50
     st.markdown("""<h1 style="color:white;text-align:center;"> 
     Results</h1>""", unsafe_allow_html= True)
+    # read img
     image_path = "results.PNG"
+    img_cv = cv2.imread(image_path)  # BGR
+    # convert to RGB
+    img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
+    # convert to PIL Image
+    img_pil = Image.fromarray(img_rgb)
     col1, col2, col3 = st.columns([1, 4, 1])
     with col2:
-        st.image(image_path, use_container_width=True)
+        st.image(img_pil, use_container_width=True)
 
    
 with tab_2:
@@ -305,4 +311,5 @@ with tab_2:
         Upload an image or video to analyze and identify CubeSats in it.
         You can adjust the confidence and NMS thresholds from the sidebar.
     """)
+
 
